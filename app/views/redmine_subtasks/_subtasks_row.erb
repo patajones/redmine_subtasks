@@ -1,0 +1,15 @@
+   <%
+   clear ||= false
+   expandable ||= false   
+   %>
+   <tr class="collapse level<%= depth %> hascontextmenu" data-depth="<%= depth %>">
+     <td class="<% concat "tree-clear" if clear %>"><% concat "<span class='toggle collapse'></span>".html_safe if expandable %>
+	     <% concat "<b>".html_safe if bold %>
+		 <%= link_to_issue(issue, :truncate => 70, :project => project != issue.project) %>
+	     <% concat "</b>".html_safe if bold %>		 
+     <td class="<% concat "tree-clear" if clear %>"><%= h(issue.status) %></td>
+     <td class="<% concat "tree-clear" if clear %>"><%= link_to_user(issue.assigned_to) %></td>
+     <td class="<% concat "tree-clear" if clear %>"><%= format_date(issue.start_date) %></td>
+     <td class="<% concat "tree-clear" if clear %>"><%= issue.status.is_closed ? format_date(issue.closed_on) : format_date(issue.due_date) %></td>        
+	 <td class="checkbox"><%= check_box_tag 'ids[]', issue.id, false, :id => nil %></td>
+   </tr>

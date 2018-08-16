@@ -1,0 +1,8 @@
+=Redmine Subtasks plugin
+
+This plugin provides Subtasks appearance like the older plugin, with the subtasks in the main issue form;
+
+==Installation and Setup
+
+1. Follow the Redmine plugin installation steps at http://www.redmine.org/wiki/redmine/Plugins
+2. Restart your Redmine web servers (e.g. mongrel, thin, passenger)

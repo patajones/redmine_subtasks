@@ -1,0 +1,11 @@
+pt-BR:
+  recolher_expandir_versao: Recolher/Expandir Versão
+  label_no_show_child_issues: Não mostra filhas de outros projetos
+  label_show_immediate_child_issues: Mostra filhas de outros projetos
+  label_show_all_child_issues: Mostra todas as filhas de outros projetos
+  label_sort_tree_with_date: Ordenar tarefas pelas datas
+  label_due_or_closed_date: Dt. Prevista/Fech.
+  issues_tree:
+    settings:
+      label_subtasks_on_issues: Ativar Subtasks nas tarefas
+      label_subtasks_on_versions: Ativar Subtasks na aba planejamento

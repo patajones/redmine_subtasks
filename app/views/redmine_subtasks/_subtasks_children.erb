@@ -1,0 +1,10 @@
+<% 
+  (children.visible.sort{ |a, b| RedmineSubtasks.issue_compare(a,b) }).each do |issue| 
+    if only_with_project_id.nil? || issue.project_id == only_with_project_id
+      
+	  html_children = render partial: "redmine_subtasks/subtasks_children", locals: { children: issue.children, project: project, depth: depth+1, only_with_project_id: issue.project_id }	  
+	  concat render partial: "redmine_subtasks/subtasks_row", locals: { issue: issue, project: project, depth: depth, bold: false, expandable: (!html_children.nil? && !html_children.blank?) }
+	  concat html_children	  
+    end
+  end unless children.nil? || children.none? 
+%>

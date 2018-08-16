@@ -1,0 +1,31 @@
+<% if Setting.plugin_redmine_subtasks.with_indifferent_access[:subtasks_on_versions] == 'true' %>
+<% content_for :header_tags do %>
+  <%= render partial: "redmine_subtasks/headers" %>
+<% end %>
+<% if (issues = @issues_by_version[version]) && issues.size > 0 %>
+<table id="mytable" class="list issues even">
+<tr class="thsub issue">
+<td> <%=l(:field_subject)%> </td>
+<td class="issue-status"> <%=l(:field_status)%> </td>
+<td> <%=l(:field_done_ratio)%> </td>
+<td> <%=l(:field_start_date)%> </td>
+<td> <%=l(:label_due_or_closed_date)%> </td>
+</tr>
+<% 
+   stj_issues = version_issues_tree(version, issues, @selected_tracker_ids)
+   depth = 0
+   stj_issues.each do |issue|     
+     concat render partial: "redmine_subtasks/version_issues_row", locals: { issue: issue, depth: depth, project: project, bold: false, expandable: true, version: version  }
+   end unless stj_issues.nil?
+%>
+</table>
+<script>
+  mytable = $("table#mytable").last();
+  newtable = mytable.prev().find("table")
+  newtable.find("tbody").replaceWith(mytable.find("tbody").html());
+  newtable.attr("id","mytable");
+  mytable.remove();  
+</script>
+
+<% end %>
+<% end %>

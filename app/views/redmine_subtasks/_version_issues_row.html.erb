@@ -1,0 +1,23 @@
+   <%   
+   clear ||= false
+   diff_version = (project == issue.project) && !issue.fixed_version.nil? && (issue.fixed_version.id != version.id)
+   blank_version = (project == issue.project) && issue.fixed_version.nil?
+   expandable = issue.respond_to?("version_children") && !issue.version_children.empty?      
+   %>
+   <tr class="collapse level<%= depth %> hascontextmenu" data-depth="<%= depth %>">
+     <td class="<% concat "diff-version" if diff_version %><% concat "tree-clear" if clear %><% concat "blank-version" if blank_version %>"><% concat "<span class='toggle collapse'></span>".html_safe if expandable %>
+	     <% concat "<b>".html_safe if bold %>
+		 <%= link_to_issue(issue, {:truncate => 70, :project => project != issue.project}) %>
+	     <% concat "</b>".html_safe if bold %>		 
+     <td class="<% concat "tree-clear" if clear %>"><%= h(issue.status) %></td>
+     <td class="percentual<% concat " tree-clear" if clear %>"><%= link_to_user(issue.done_ratio) %>%</td>
+     <td class="<% concat "tree-clear" if clear %>"><%= format_date(issue.start_date) %></td>
+     <td class="<% concat "tree-clear" if clear %>"><%= issue.status.is_closed ? format_date(issue.closed_on) : format_date(issue.due_date) %></td>        	 
+	 <td class="checkbox"><%= check_box_tag 'ids[]', issue.id, false, :id => nil %></td>
+   </tr>
+   
+   <%   
+   issue.version_children.each do |subissue|     
+     concat render partial: "redmine_subtasks/version_issues_row", locals: { issue: subissue, project: project, depth: depth+1, bold: false, version: version }
+   end if issue.respond_to? "version_children"   
+   %>   

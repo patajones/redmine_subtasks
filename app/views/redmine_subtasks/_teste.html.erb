@@ -1,0 +1,18 @@
+<% content_for :header_tags do %>
+  <%= render partial: "redmine_subtasks/headers" %>
+<% end %>
+<%= version %>
+<% if (issues = @issues_by_version[version]) && issues.size > 0 %>
+
+<table id="mytable" class="list issues even">
+<tr class="thsub issue">
+<td> <%=l(:field_subject)%> </td>
+<td class="issue-status"> <%=l(:field_status)%> </td>
+<td> <%=l(:field_done_ratio)%> </td>
+<td> <%=l(:field_start_date)%> </td>
+<td> <%=l(:field_due_date)%> </td>
+</tr>
+<% issues = stj_prepare_issues(issues) %>
+
+</table>
+<% end %>

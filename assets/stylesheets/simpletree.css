@@ -1,0 +1,121 @@
+#mytable {
+    border-collapse: collapse;
+	padding-right: 1px;	
+}
+
+#mytable td {
+  text-align: left !important;
+}
+
+.thsub {
+   background-color:#EEEEEE; padding: 4px; white-space:nowrap;
+   font-weight: bold;
+}
+
+/*18 levels! Who needs more?*/
+.level1 td:first-child {
+    padding-left: 15px !important;	
+}
+.level2 td:first-child {
+    padding-left: 30px !important;
+}
+.level3 td:first-child {
+    padding-left: 45px !important;
+}
+.level4 td:first-child {
+    padding-left: 60px !important;
+}
+.level5 td:first-child {
+    padding-left: 75px !important;
+}
+.level6 td:first-child {
+    padding-left: 90px !important;
+}
+.level7 td:first-child {
+    padding-left: 105px !important;
+}
+.level8 td:first-child {
+    padding-left: 120px !important;
+}
+.level9 td:first-child {
+    padding-left: 135px !important;
+}
+.level10 td:first-child {
+    padding-left: 150px !important;
+}
+.level11 td:first-child {
+    padding-left: 165px !important;
+}
+.level12 td:first-child {
+    padding-left: 180px !important;
+}
+.level13 td:first-child {
+    padding-left: 195px !important;
+}
+.level14 td:first-child {
+    padding-left: 210px !important;
+}
+.level15 td:first-child {
+    padding-left: 225px !important;
+}
+.level16 td:first-child {
+    padding-left: 240px !important;
+}
+.level17 td:first-child {
+    padding-left: 255px !important;
+}
+.level18 td:first-child {
+    padding-left: 270px !important;
+}
+.collapse .toggle {
+    background: url(../images/collapse.gif) no-repeat;
+    padding: 0 5px 0 0px;
+    font-size: 80%;
+    color: #aaa;
+}
+.expand .toggle {
+    background: url(../images/expand.gif) no-repeat;
+    padding: 0 5px 0 0px;
+}
+.toggle {
+    height: 9px;
+    width: 9px;
+    display: inline-block;
+}
+
+.expand-version{
+    font-size: 80%;
+    color: #aaa;
+}
+
+div.solucao {font-style: italic}
+
+#mytable td.percentual, td.percentual { text-align: center !important;}
+
+tr.spaceTop > td
+{
+  padding-top: 3em;
+}
+
+tr.cleanborder
+{
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+
+td.issue-status {
+  /* width: 8%; */
+  padding-left: 5px;
+}
+
+td.issue-assigned-to{
+  /* width: 20%; */
+  text-align: center;
+}
+
+td.tree-clear, td.tree-clear a:link, td.tree-clear a:visited { color: #999 !important;}
+
+a.diff_project { background-color: rgb(245, 196, 196)}
+
+td.diff-version a { background-color: rgba(236, 178, 106, 0.33);}
+td.blank-version a { background-color: rgba(251, 255, 0, 0.33);}

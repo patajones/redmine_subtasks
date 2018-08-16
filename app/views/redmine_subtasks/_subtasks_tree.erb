@@ -1,0 +1,55 @@
+<% if Setting.plugin_redmine_subtasks.with_indifferent_access[:subtasks_on_issues] == 'true' %>
+
+<% content_for :header_tags do %>
+  <%= render partial: "redmine_subtasks/headers" %>
+<% end %>
+
+<% if (issue.descendants.size > 0) || (!issue.parent.nil?) %>
+<div id="issue_tree2" style="display: none;">
+<div class="contextual">
+<%= link_to_new_subtask(@issue) if User.current.allowed_to?(:manage_subtasks, @project) %>
+</div>
+<p><strong><%=l(:label_subtask_plural)%></strong></p>
+<form>
+<table id="mytable" class="list issues even">
+<tr class="thsub issue">
+<td> <%=l(:field_subject)%> </td>
+<td class="issue-status"> <%=l(:field_status)%> </td>
+<td class="issue-assigned-to"> <%=l(:field_assigned_to)%> </td>
+<td> <%=l(:field_start_date)%> </td>
+<td> <%=l(:label_due_or_closed_date)%> </td>
+</tr>
+   <% 
+   
+   depth = 0
+   #Adiciona os pais   
+   @issue.ancestors.each do |p|
+     concat render partial: "redmine_subtasks/subtasks_row", locals: { issue: p, project: issue.project, depth: depth, bold: false, expandable: true  }
+     depth += 1
+   end 
+   
+   #renderiza filhos e guarda para concatenar apos concatenacao do tarefa atual
+   html_children = render( partial: "redmine_subtasks/subtasks_children", locals: { children: issue.children, project: issue.project, depth: depth+1, only_with_project_id: nil } )
+   
+   #renderiza tarefa atual junto dos seus irmaos, verificando se sera ou nao expansivel
+   
+   if issue.parent.nil?
+	  concat render partial: "redmine_subtasks/subtasks_row", locals: { issue: issue, project: issue.project, depth: depth, bold: true, expandable: (!html_children.nil? && !html_children.blank?) }
+	  concat html_children	     
+   else
+     parent = issue.parent
+	 (parent.children.visible.sort{ |a, b| RedmineSubtasks.issue_compare(a,b) }).each do |child| 
+	   concat render partial: "redmine_subtasks/subtasks_row", locals: { issue: child, 
+	                                                                        project: issue.project, 
+																			depth: depth, 
+																			bold: child.id == issue.id, 
+																			expandable: ((child.id == issue.id) && !html_children.nil? && !html_children.blank?)} if child.project === issue.project
+	   concat html_children if child.id == issue.id
+     end	 
+   end      
+   %>
+</table>
+</form>
+</div>
+<% end %>
+<% end %>

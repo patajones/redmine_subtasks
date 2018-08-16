@@ -1,0 +1,11 @@
+en:
+  recolher_expandir_versao: Collapse/Expand Version
+  label_no_show_child_issues: Do not show children of another projects
+  label_show_all_child_issues: Show all childrens of another projects
+  label_show_all_child_issues: Show all childrens of another projects
+  label_sort_tree_with_date: Sort issues with dates fields
+  label_due_or_closed_date: Date Due/Closed
+  issues_tree:
+    settings:
+      label_subtasks_on_issues: Active Subtasks view on Issues
+      label_subtasks_on_versions: Active Subtasks view on Versions

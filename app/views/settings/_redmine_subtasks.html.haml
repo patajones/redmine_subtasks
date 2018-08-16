@@ -1,0 +1,10 @@
+%p
+  %label
+    = l(:'issues_tree.settings.label_subtasks_on_issues')
+  = hidden_field_tag 'settings[subtasks_on_issues]', false
+  = check_box_tag 'settings[subtasks_on_issues]', true, @settings['subtasks_on_issues'] == 'true'
+%p
+  %label
+    = l(:'issues_tree.settings.label_subtasks_on_versions')
+  = hidden_field_tag 'settings[subtasks_on_versions]', false
+  = check_box_tag 'settings[subtasks_on_versions]', true, @settings['subtasks_on_versions'] == 'true'

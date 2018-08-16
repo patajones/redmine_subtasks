@@ -1,0 +1,26 @@
+  <span id="new_versions_options" style="visibility: hidden;">    
+  <% unless User.current.nil? %>
+  <p></p>
+  <li>
+    <label for="child_none">	  
+      <%= radio_button_tag "version_show", "child_none", User.current.pref.others.fetch(:version_show, "child_none")=="child_none" %> <%= l(:label_no_show_child_issues) %>
+    </label>
+  </li>
+  <li>
+    <label for="child_immediate">	  
+      <%= radio_button_tag "version_show", "child_immediate", User.current.pref.others.fetch(:version_show, "child_none")=="child_immediate" %> <%= l(:label_show_immediate_child_issues) %>
+    </label>
+  </li>
+  <li>
+    <label for="child_all">
+      <%= radio_button_tag "version_show", "child_all", User.current.pref.others.fetch(:version_show, "child_none")=="child_all" %> <%= l(:label_show_all_child_issues) %>
+    </label>
+  </li>  
+  <p></p>
+  <li>
+    <label for="sort_tree_with_date">
+      <%= check_box_tag "sort_tree_with_date", "1", User.current.pref.others.fetch(:sort_tree_with_date, false) %> <%= l(:label_sort_tree_with_date) %>
+    </label>
+  </li>    
+  <% end %>
+  </span>  
